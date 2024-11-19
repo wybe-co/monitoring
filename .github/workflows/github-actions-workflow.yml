@@ -1,0 +1,40 @@
+name: Monitoring API Open Source
+
+on:
+  pull_request:
+    branches:
+      - prod
+    types:
+      - closed
+
+jobs:
+  monitoring:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build and run Dcoker Container
+      run: | 
+          docker build -t api-monitor .
+          docker run -d --name api-monitor-container -p 5000:5000 api-monitor
+          sleep 5
+    
+    - name: Fetch monitoring results
+      run: | 
+          curl http://localhost:5000/monitor -o results.json
+          car results.json
+
+    - name: Send Results to Discord
+      env:
+        WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+          curl -X POST \
+            -H  "Content-Type: application/json" \
+            -d @results.json \
+            "$WEBHOOK_URL"
