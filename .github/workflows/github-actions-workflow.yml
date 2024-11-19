@@ -26,7 +26,7 @@ jobs:
     - name: Fetch monitoring results
       run: | 
           curl http://localhost:5000/monitor -o results.json
-          car results.json
+          cat results.json
 
     - name: Send Results to Discord
       env:
