@@ -1,11 +1,9 @@
 name: Monitoring API Open Source
 
 on:
-  pull_request:
-    branches:
-      - prod
-    types:
-      - closed
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"  # Executa a cada 15 minutos
 
 jobs:
   monitoring:
