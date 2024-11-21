@@ -1,5 +1,4 @@
 [
-    {"name": "OpenWeather", "url": "https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY"},
     {"name": "GitHub", "url": "https://api.github.com"},
     {"name": "NASA", "url": "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"}
 ]
