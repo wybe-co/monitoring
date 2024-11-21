@@ -3,7 +3,7 @@ name: Monitoring API Open Source
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *"  # Executa a cada 15 minutos
+    - cron: "0 12 * * *"  # Executa a cada 15 minutos
 
 jobs:
   monitoring:
